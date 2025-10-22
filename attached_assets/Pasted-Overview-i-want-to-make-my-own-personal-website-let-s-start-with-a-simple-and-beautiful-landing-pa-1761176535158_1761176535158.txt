@@ -1,0 +1,105 @@
+Overview: i want to make my own personal website. let's start with a simple and beautiful landing page that just has the text "coming soon...". it should borrow beautiful first principle design methodology from Apple's flowly animations and animiations.dev. it should feature beautiful bouncy animations. i want the website to be named: yaseenmohamed.me
+
+
+
+the "coming soon" should have a bouncy feature that on hover over each letter, it bounces up and down and it highlighted. also, an animation should play at the bottom of the screen of a little big hero robot looking guy slowly pans in from the sides of the screen, looks around, and then heads back in the direction he came in.
+
+
+
+Spec:
+
+
+
+# yaseenmohamed.me — Personal Landing Page
+
+
+
+A clean, elegant coming-soon page for Yaseen Mohamed. Designed with Apple's minimalist aesthetic in mind, featuring subtle textures, smooth animations, and playful interactions.
+
+
+
+---
+
+
+
+## 🧑‍💻 User Story
+
+
+
+> As a visitor to Yaseen Mohamed’s personal site, I want to experience a playful and professional teaser page that reflects Yaseen’s aesthetic and attention to detail, while knowing the site is "coming soon".
+
+
+
+---
+
+
+
+## ✨ Features
+
+
+
+- 💬 **"coming soon..." Text**  
+
+  - Each letter animates with a **physics-based bounce** on hover  
+
+  - Letters emit a **subtle glow** on hover  
+
+  - Fully animated using **Framer Motion**
+
+
+
+- 🤖 **Animated Robot (Lottie)**  
+
+  - A cute 2D robot glides in from the side, looks around, and glides out  
+
+  - Plays once on load  
+
+  - Anchored to the bottom of the screen
+
+
+
+- 🎨 **Design**  
+
+  - **Light theme** with subtle background texture  
+
+  - **SF Pro font**, matching Apple's visual system  
+
+  - **Centered, fixed layout** — no scroll  
+
+  - Smooth fade-in and layout animation
+
+
+
+- 🛠 **Tech Stack**  
+
+  - Built with **Next.js + TypeScript**  
+
+  - Animations by **Framer Motion + Lottie**  
+
+  - Deployed via **Replit** for fast preview + live link
+
+
+
+---
+
+
+
+## 🛣 Roadmap / Changelog
+
+
+
+- [x] Landing layout
+
+- [x] Bounce + glow hover animations
+
+- [x] Add SF Pro font with fallback
+
+- [x] Add subtle background texture
+
+- [x] Integrate Lottie robot
+
+- [ ] Optional: Add email form / follow link
+
+- [ ] Optional: Control robot animation with scroll
+
+- [ ] Optional: Mobile optimizations
