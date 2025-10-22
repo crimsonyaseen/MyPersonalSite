@@ -17,7 +17,7 @@ export default function Home() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="relative flex items-center justify-center w-full h-full pt-32"
+        className="relative flex items-start justify-center w-full h-full pt-24 md:pt-32"
       >
         <div className="px-4 md:px-8 max-w-4xl mx-auto text-center">
           <BouncyText

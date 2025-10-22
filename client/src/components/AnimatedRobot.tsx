@@ -1,26 +1,30 @@
 import { motion, useAnimationControls } from "framer-motion";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function AnimatedRobot() {
   const controls = useAnimationControls();
+  const [isWalking, setIsWalking] = useState(true);
 
   useEffect(() => {
     const sequence = async () => {
+      setIsWalking(true);
       await controls.start({
-        x: 0,
-        transition: { duration: 2.5, ease: "easeOut" },
+        x: "45vw",
+        transition: { duration: 3, ease: "linear" },
       });
 
+      setIsWalking(false);
       await controls.start({
-        rotate: [0, -5, 5, -5, 5, 0],
+        rotate: [0, -8, 8, -8, 8, 0],
         transition: { duration: 1.5, times: [0, 0.2, 0.4, 0.6, 0.8, 1] },
       });
 
       await new Promise((resolve) => setTimeout(resolve, 500));
 
+      setIsWalking(true);
       await controls.start({
-        x: "100vw",
-        transition: { duration: 2.5, ease: "easeIn" },
+        x: "120vw",
+        transition: { duration: 3, ease: "linear" },
       });
     };
 
@@ -101,14 +105,22 @@ export default function AnimatedRobot() {
           />
           
           <motion.g
-            animate={{
-              x: [-2, 2, -2],
-            }}
+            animate={
+              isWalking
+                ? {
+                    rotate: [-25, 25, -25],
+                    y: [-2, 2, -2],
+                  }
+                : {
+                    x: [-2, 2, -2],
+                  }
+            }
             transition={{
-              duration: 1.8,
+              duration: isWalking ? 0.6 : 1.8,
               repeat: Infinity,
               ease: "easeInOut",
             }}
+            style={{ originX: "30px", originY: "65px" }}
           >
             <ellipse
               cx="30"
@@ -122,14 +134,22 @@ export default function AnimatedRobot() {
           </motion.g>
           
           <motion.g
-            animate={{
-              x: [2, -2, 2],
-            }}
+            animate={
+              isWalking
+                ? {
+                    rotate: [25, -25, 25],
+                    y: [2, -2, 2],
+                  }
+                : {
+                    x: [2, -2, 2],
+                  }
+            }
             transition={{
-              duration: 1.8,
+              duration: isWalking ? 0.6 : 1.8,
               repeat: Infinity,
               ease: "easeInOut",
             }}
+            style={{ originX: "90px", originY: "65px" }}
           >
             <ellipse
               cx="90"
@@ -150,11 +170,18 @@ export default function AnimatedRobot() {
             fill="url(#bodyGradient)"
             stroke="hsl(0 0% 85%)"
             strokeWidth="2"
-            animate={{
-              ry: [28, 26, 28],
-            }}
+            animate={
+              isWalking
+                ? {
+                    ry: [28, 24, 28],
+                    scaleX: [1, 1.1, 1],
+                  }
+                : {
+                    ry: [28, 26, 28],
+                  }
+            }
             transition={{
-              duration: 2,
+              duration: isWalking ? 0.6 : 2,
               repeat: Infinity,
               ease: "easeInOut",
             }}
@@ -167,14 +194,21 @@ export default function AnimatedRobot() {
             fill="url(#bodyGradient)"
             stroke="hsl(0 0% 85%)"
             strokeWidth="2"
-            animate={{
-              ry: [28, 26, 28],
-            }}
+            animate={
+              isWalking
+                ? {
+                    ry: [28, 24, 28],
+                    scaleX: [1, 1.1, 1],
+                  }
+                : {
+                    ry: [28, 26, 28],
+                  }
+            }
             transition={{
-              duration: 2,
+              duration: isWalking ? 0.6 : 2,
               repeat: Infinity,
               ease: "easeInOut",
-              delay: 1,
+              delay: isWalking ? 0.3 : 1,
             }}
           />
         </g>
