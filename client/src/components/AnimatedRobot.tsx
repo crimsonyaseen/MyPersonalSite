@@ -29,133 +29,129 @@ export default function AnimatedRobot() {
 
   return (
     <motion.div
-      initial={{ x: "-30vw" }}
+      initial={{ x: "-20vw" }}
       animate={controls}
-      className="fixed bottom-8 left-0 z-50 pointer-events-none"
-      style={{ width: "250px", height: "250px" }}
+      className="fixed bottom-4 left-0 z-50 pointer-events-none"
+      style={{ width: "140px", height: "180px" }}
     >
       <svg
-        viewBox="0 0 200 200"
+        viewBox="0 0 120 160"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         className="w-full h-full drop-shadow-lg"
       >
-        <g id="robot">
-          <motion.rect
-            x="60"
-            y="50"
-            width="80"
-            height="90"
-            rx="8"
-            fill="hsl(210 100% 60%)"
-            stroke="hsl(210 100% 40%)"
-            strokeWidth="3"
+        <defs>
+          <linearGradient id="bodyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor="hsl(0 0% 98%)" />
+            <stop offset="100%" stopColor="hsl(0 0% 92%)" />
+          </linearGradient>
+        </defs>
+        <g id="baymax-robot">
+          <motion.ellipse
+            cx="60"
+            cy="35"
+            rx="28"
+            ry="30"
+            fill="url(#bodyGradient)"
+            stroke="hsl(0 0% 85%)"
+            strokeWidth="2"
             animate={{
-              y: [50, 48, 50],
+              ry: [30, 29, 30],
             }}
             transition={{
               duration: 2,
               repeat: Infinity,
               ease: "easeInOut",
-            }}
-          />
-          
-          <motion.circle
-            cx="85"
-            cy="80"
-            r="8"
-            fill="hsl(0 0% 100%)"
-            animate={{
-              scale: [1, 0.2, 1],
-            }}
-            transition={{
-              duration: 3,
-              repeat: Infinity,
-              repeatDelay: 2,
-            }}
-          />
-          <motion.circle
-            cx="115"
-            cy="80"
-            r="8"
-            fill="hsl(0 0% 100%)"
-            animate={{
-              scale: [1, 0.2, 1],
-            }}
-            transition={{
-              duration: 3,
-              repeat: Infinity,
-              repeatDelay: 2,
             }}
           />
           
           <rect
-            x="75"
-            y="105"
-            width="50"
-            height="15"
-            rx="7.5"
-            fill="hsl(0 0% 100%)"
-            opacity="0.8"
+            x="42"
+            y="30"
+            width="8"
+            height="3"
+            rx="1.5"
+            fill="hsl(0 0% 20%)"
+          />
+          <rect
+            x="70"
+            y="30"
+            width="8"
+            height="3"
+            rx="1.5"
+            fill="hsl(0 0% 20%)"
+          />
+          
+          <motion.ellipse
+            cx="60"
+            cy="80"
+            rx="35"
+            ry="38"
+            fill="url(#bodyGradient)"
+            stroke="hsl(0 0% 85%)"
+            strokeWidth="2"
+            animate={{
+              ry: [38, 37, 38],
+            }}
+            transition={{
+              duration: 2.5,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
           />
           
           <motion.g
             animate={{
-              rotate: [-5, 5, -5],
+              x: [-2, 2, -2],
             }}
             transition={{
-              duration: 1.5,
+              duration: 1.8,
               repeat: Infinity,
               ease: "easeInOut",
             }}
-            style={{ originX: "50px", originY: "80px" }}
           >
-            <rect
-              x="35"
-              y="70"
-              width="20"
-              height="50"
-              rx="5"
-              fill="hsl(210 100% 60%)"
-              stroke="hsl(210 100% 40%)"
+            <ellipse
+              cx="30"
+              cy="75"
+              rx="10"
+              ry="25"
+              fill="url(#bodyGradient)"
+              stroke="hsl(0 0% 85%)"
               strokeWidth="2"
             />
           </motion.g>
           
           <motion.g
             animate={{
-              rotate: [5, -5, 5],
+              x: [2, -2, 2],
             }}
             transition={{
-              duration: 1.5,
+              duration: 1.8,
               repeat: Infinity,
               ease: "easeInOut",
             }}
-            style={{ originX: "150px", originY: "80px" }}
           >
-            <rect
-              x="145"
-              y="70"
-              width="20"
-              height="50"
-              rx="5"
-              fill="hsl(210 100% 60%)"
-              stroke="hsl(210 100% 40%)"
+            <ellipse
+              cx="90"
+              cy="75"
+              rx="10"
+              ry="25"
+              fill="url(#bodyGradient)"
+              stroke="hsl(0 0% 85%)"
               strokeWidth="2"
             />
           </motion.g>
           
-          <motion.rect
-            x="70"
-            y="145"
-            width="25"
-            height="40"
-            rx="5"
-            fill="hsl(210 100% 60%)"
-            stroke="hsl(210 100% 40%)"
+          <motion.ellipse
+            cx="45"
+            cy="130"
+            rx="12"
+            ry="28"
+            fill="url(#bodyGradient)"
+            stroke="hsl(0 0% 85%)"
             strokeWidth="2"
             animate={{
-              height: [40, 35, 40],
+              ry: [28, 26, 28],
             }}
             transition={{
               duration: 2,
@@ -163,17 +159,16 @@ export default function AnimatedRobot() {
               ease: "easeInOut",
             }}
           />
-          <motion.rect
-            x="105"
-            y="145"
-            width="25"
-            height="40"
-            rx="5"
-            fill="hsl(210 100% 60%)"
-            stroke="hsl(210 100% 40%)"
+          <motion.ellipse
+            cx="75"
+            cy="130"
+            rx="12"
+            ry="28"
+            fill="url(#bodyGradient)"
+            stroke="hsl(0 0% 85%)"
             strokeWidth="2"
             animate={{
-              height: [40, 35, 40],
+              ry: [28, 26, 28],
             }}
             transition={{
               duration: 2,
@@ -182,20 +177,6 @@ export default function AnimatedRobot() {
               delay: 1,
             }}
           />
-          
-          <circle
-            cx="100"
-            cy="35"
-            r="6"
-            fill="hsl(30 95% 52%)"
-          >
-            <animate
-              attributeName="opacity"
-              values="1;0.3;1"
-              dur="2s"
-              repeatCount="indefinite"
-            />
-          </circle>
         </g>
       </svg>
     </motion.div>

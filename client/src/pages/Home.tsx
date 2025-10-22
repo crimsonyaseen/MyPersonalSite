@@ -17,12 +17,12 @@ export default function Home() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="relative flex items-center justify-center w-full h-full"
+        className="relative flex items-center justify-center w-full h-full pt-32"
       >
-        <div className="px-4 md:px-8 max-w-5xl mx-auto text-center">
+        <div className="px-4 md:px-8 max-w-4xl mx-auto text-center">
           <BouncyText
             text="coming soon..."
-            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-extralight tracking-tight text-foreground"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extralight tracking-tight text-foreground"
           />
         </div>
       </motion.div>
