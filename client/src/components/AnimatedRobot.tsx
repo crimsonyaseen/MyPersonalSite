@@ -10,207 +10,282 @@ export default function AnimatedRobot() {
       setIsWalking(true);
       await controls.start({
         x: "45vw",
-        transition: { duration: 3, ease: "linear" },
+        transition: { 
+          duration: 4, 
+          ease: "linear",
+        },
       });
 
       setIsWalking(false);
       await controls.start({
-        rotate: [0, -8, 8, -8, 8, 0],
-        transition: { duration: 1.5, times: [0, 0.2, 0.4, 0.6, 0.8, 1] },
+        rotate: [0, -10, 10, -10, 10, 0],
+        y: [0, -5, 0, -5, 0, 0],
+        transition: { 
+          duration: 1.8, 
+          times: [0, 0.2, 0.4, 0.6, 0.8, 1],
+          type: "spring",
+          damping: 8,
+          stiffness: 200,
+        },
       });
 
-      await new Promise((resolve) => setTimeout(resolve, 500));
+      await new Promise((resolve) => setTimeout(resolve, 600));
 
       setIsWalking(true);
       await controls.start({
         x: "120vw",
-        transition: { duration: 3, ease: "linear" },
+        transition: { 
+          duration: 4, 
+          ease: "linear",
+        },
       });
     };
 
     sequence();
   }, [controls]);
 
+  const springTransition = {
+    type: "spring" as const,
+    damping: 10,
+    stiffness: 200,
+    mass: 0.5,
+  };
+
   return (
     <motion.div
-      initial={{ x: "-20vw" }}
+      initial={{ x: "-15vw" }}
       animate={controls}
-      className="fixed bottom-4 left-0 z-50 pointer-events-none"
-      style={{ width: "140px", height: "180px" }}
+      className="fixed bottom-8 left-0 z-50 pointer-events-none"
+      style={{ width: "100px", height: "140px" }}
     >
       <svg
-        viewBox="0 0 120 160"
+        viewBox="0 0 80 120"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="w-full h-full drop-shadow-lg"
+        className="w-full h-full"
       >
-        <defs>
-          <linearGradient id="bodyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="hsl(0 0% 98%)" />
-            <stop offset="100%" stopColor="hsl(0 0% 92%)" />
-          </linearGradient>
-        </defs>
-        <g id="baymax-robot">
-          <motion.ellipse
-            cx="60"
-            cy="35"
-            rx="28"
-            ry="30"
-            fill="url(#bodyGradient)"
-            stroke="hsl(0 0% 85%)"
+        <g id="stick-robot">
+          <motion.circle
+            cx="40"
+            cy="15"
+            r="12"
+            fill="hsl(0 0% 10%)"
+            stroke="hsl(0 0% 100%)"
             strokeWidth="2"
-            animate={{
-              ry: [30, 29, 30],
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          />
-          
-          <rect
-            x="42"
-            y="30"
-            width="8"
-            height="3"
-            rx="1.5"
-            fill="hsl(0 0% 20%)"
-          />
-          <rect
-            x="70"
-            y="30"
-            width="8"
-            height="3"
-            rx="1.5"
-            fill="hsl(0 0% 20%)"
-          />
-          
-          <motion.ellipse
-            cx="60"
-            cy="80"
-            rx="35"
-            ry="38"
-            fill="url(#bodyGradient)"
-            stroke="hsl(0 0% 85%)"
-            strokeWidth="2"
-            animate={{
-              ry: [38, 37, 38],
-            }}
-            transition={{
-              duration: 2.5,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          />
-          
-          <motion.g
             animate={
               isWalking
                 ? {
-                    rotate: [-25, 25, -25],
-                    y: [-2, 2, -2],
+                    y: [0, -2, 0],
                   }
                 : {
-                    x: [-2, 2, -2],
+                    scale: [1, 1.05, 1],
                   }
             }
             transition={{
-              duration: isWalking ? 0.6 : 1.8,
+              ...springTransition,
+              duration: isWalking ? 0.4 : 1.5,
               repeat: Infinity,
-              ease: "easeInOut",
             }}
-            style={{ originX: "30px", originY: "65px" }}
-          >
-            <ellipse
-              cx="30"
-              cy="75"
-              rx="10"
-              ry="25"
-              fill="url(#bodyGradient)"
-              stroke="hsl(0 0% 85%)"
-              strokeWidth="2"
-            />
-          </motion.g>
+          />
           
-          <motion.g
+          <motion.circle
+            cx="35"
+            cy="13"
+            r="2.5"
+            fill="hsl(0 0% 100%)"
             animate={
-              isWalking
-                ? {
-                    rotate: [25, -25, 25],
-                    y: [2, -2, 2],
-                  }
-                : {
-                    x: [2, -2, 2],
-                  }
+              !isWalking && {
+                scaleY: [1, 0.1, 1],
+              }
             }
             transition={{
-              duration: isWalking ? 0.6 : 1.8,
+              duration: 3,
               repeat: Infinity,
-              ease: "easeInOut",
+              repeatDelay: 2,
             }}
-            style={{ originX: "90px", originY: "65px" }}
-          >
-            <ellipse
-              cx="90"
-              cy="75"
-              rx="10"
-              ry="25"
-              fill="url(#bodyGradient)"
-              stroke="hsl(0 0% 85%)"
-              strokeWidth="2"
-            />
-          </motion.g>
-          
-          <motion.ellipse
+          />
+          <motion.circle
             cx="45"
-            cy="130"
-            rx="12"
-            ry="28"
-            fill="url(#bodyGradient)"
-            stroke="hsl(0 0% 85%)"
-            strokeWidth="2"
+            cy="13"
+            r="2.5"
+            fill="hsl(0 0% 100%)"
+            animate={
+              !isWalking && {
+                scaleY: [1, 0.1, 1],
+              }
+            }
+            transition={{
+              duration: 3,
+              repeat: Infinity,
+              repeatDelay: 2,
+            }}
+          />
+          
+          <motion.line
+            x1="40"
+            y1="27"
+            x2="40"
+            y2="65"
+            stroke="hsl(0 0% 10%)"
+            strokeWidth="3.5"
+            strokeLinecap="round"
             animate={
               isWalking
                 ? {
-                    ry: [28, 24, 28],
-                    scaleX: [1, 1.1, 1],
+                    y2: [65, 63, 65],
                   }
-                : {
-                    ry: [28, 26, 28],
-                  }
+                : {}
             }
             transition={{
-              duration: isWalking ? 0.6 : 2,
+              ...springTransition,
+              duration: 0.4,
               repeat: Infinity,
-              ease: "easeInOut",
             }}
           />
-          <motion.ellipse
-            cx="75"
-            cy="130"
-            rx="12"
-            ry="28"
-            fill="url(#bodyGradient)"
-            stroke="hsl(0 0% 85%)"
-            strokeWidth="2"
+          
+          <motion.line
+            x1="40"
+            y1="35"
+            x2="20"
+            y2="55"
+            stroke="hsl(0 0% 10%)"
+            strokeWidth="3"
+            strokeLinecap="round"
             animate={
               isWalking
                 ? {
-                    ry: [28, 24, 28],
-                    scaleX: [1, 1.1, 1],
+                    rotate: [-35, 35, -35],
                   }
                 : {
-                    ry: [28, 26, 28],
+                    y2: [55, 50, 55],
                   }
             }
             transition={{
-              duration: isWalking ? 0.6 : 2,
+              ...springTransition,
+              duration: isWalking ? 0.4 : 1.5,
               repeat: Infinity,
-              ease: "easeInOut",
-              delay: isWalking ? 0.3 : 1,
             }}
+            style={{ originX: "40px", originY: "35px" }}
           />
+          
+          <motion.line
+            x1="40"
+            y1="35"
+            x2="60"
+            y2="55"
+            stroke="hsl(0 0% 10%)"
+            strokeWidth="3"
+            strokeLinecap="round"
+            animate={
+              isWalking
+                ? {
+                    rotate: [35, -35, 35],
+                  }
+                : {
+                    y2: [55, 50, 55],
+                  }
+            }
+            transition={{
+              ...springTransition,
+              duration: isWalking ? 0.4 : 1.5,
+              repeat: Infinity,
+            }}
+            style={{ originX: "40px", originY: "35px" }}
+          />
+          
+          <motion.g>
+            <motion.line
+              x1="40"
+              y1="65"
+              x2="30"
+              y2="95"
+              stroke="hsl(0 0% 10%)"
+              strokeWidth="3.5"
+              strokeLinecap="round"
+              animate={
+                isWalking
+                  ? {
+                      rotate: [-20, 20, -20],
+                    }
+                  : {}
+              }
+              transition={{
+                ...springTransition,
+                duration: 0.4,
+                repeat: Infinity,
+              }}
+              style={{ originX: "40px", originY: "65px" }}
+            />
+            <motion.line
+              x1="30"
+              y1="95"
+              x2="28"
+              y2="108"
+              stroke="hsl(0 0% 10%)"
+              strokeWidth="3.5"
+              strokeLinecap="round"
+              animate={
+                isWalking
+                  ? {
+                      rotate: [-20, 20, -20],
+                    }
+                  : {}
+              }
+              transition={{
+                ...springTransition,
+                duration: 0.4,
+                repeat: Infinity,
+              }}
+              style={{ originX: "40px", originY: "65px" }}
+            />
+          </motion.g>
+          
+          <motion.g>
+            <motion.line
+              x1="40"
+              y1="65"
+              x2="50"
+              y2="95"
+              stroke="hsl(0 0% 10%)"
+              strokeWidth="3.5"
+              strokeLinecap="round"
+              animate={
+                isWalking
+                  ? {
+                      rotate: [20, -20, 20],
+                    }
+                  : {}
+              }
+              transition={{
+                ...springTransition,
+                duration: 0.4,
+                repeat: Infinity,
+              }}
+              style={{ originX: "40px", originY: "65px" }}
+            />
+            <motion.line
+              x1="50"
+              y1="95"
+              x2="52"
+              y2="108"
+              stroke="hsl(0 0% 10%)"
+              strokeWidth="3.5"
+              strokeLinecap="round"
+              animate={
+                isWalking
+                  ? {
+                      rotate: [20, -20, 20],
+                    }
+                  : {}
+              }
+              transition={{
+                ...springTransition,
+                duration: 0.4,
+                repeat: Infinity,
+              }}
+              style={{ originX: "40px", originY: "65px" }}
+            />
+          </motion.g>
         </g>
       </svg>
     </motion.div>
