@@ -3,39 +3,41 @@ import { useEffect, useState } from "react";
 
 export default function AnimatedRobot() {
   const controls = useAnimationControls();
-  const [isWalking, setIsWalking] = useState(true);
+  const [animationPhase, setAnimationPhase] = useState<"walking" | "lookingAround" | "stopped">("walking");
 
   useEffect(() => {
     const sequence = async () => {
-      setIsWalking(true);
+      setAnimationPhase("walking");
       await controls.start({
         x: "45vw",
         transition: { 
-          duration: 4, 
+          duration: 5, 
           ease: "linear",
         },
       });
 
-      setIsWalking(false);
+      setAnimationPhase("stopped");
+      await new Promise((resolve) => setTimeout(resolve, 300));
+      
+      setAnimationPhase("lookingAround");
       await controls.start({
-        rotate: [0, -10, 10, -10, 10, 0],
-        y: [0, -5, 0, -5, 0, 0],
+        rotate: [0, -8, 0, 8, 0, -5, 0],
         transition: { 
-          duration: 1.8, 
-          times: [0, 0.2, 0.4, 0.6, 0.8, 1],
+          duration: 2.5,
+          times: [0, 0.15, 0.3, 0.5, 0.65, 0.85, 1],
           type: "spring",
-          damping: 8,
-          stiffness: 200,
+          damping: 12,
+          stiffness: 150,
         },
       });
 
-      await new Promise((resolve) => setTimeout(resolve, 600));
+      await new Promise((resolve) => setTimeout(resolve, 400));
 
-      setIsWalking(true);
+      setAnimationPhase("walking");
       await controls.start({
         x: "120vw",
         transition: { 
-          duration: 4, 
+          duration: 5, 
           ease: "linear",
         },
       });
@@ -46,9 +48,9 @@ export default function AnimatedRobot() {
 
   const springTransition = {
     type: "spring" as const,
-    damping: 10,
-    stiffness: 200,
-    mass: 0.5,
+    damping: 12,
+    stiffness: 180,
+    mass: 0.8,
   };
 
   return (
@@ -58,11 +60,23 @@ export default function AnimatedRobot() {
       className="fixed bottom-8 left-0 z-50 pointer-events-none"
       style={{ width: "100px", height: "140px" }}
     >
-      <svg
+      <motion.svg
         viewBox="0 0 80 120"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         className="w-full h-full"
+        animate={
+          animationPhase === "walking"
+            ? {
+                y: [0, -3, 0, -3, 0],
+              }
+            : {}
+        }
+        transition={{
+          duration: 0.8,
+          repeat: animationPhase === "walking" ? Infinity : 0,
+          ease: "easeInOut",
+        }}
       >
         <g id="stick-robot">
           <motion.circle
@@ -73,18 +87,17 @@ export default function AnimatedRobot() {
             stroke="hsl(0 0% 100%)"
             strokeWidth="2"
             animate={
-              isWalking
+              animationPhase === "lookingAround"
                 ? {
-                    y: [0, -2, 0],
+                    x: [0, -2, 2, -1, 1, 0],
                   }
-                : {
-                    scale: [1, 1.05, 1],
-                  }
+                : {}
             }
             transition={{
-              ...springTransition,
-              duration: isWalking ? 0.4 : 1.5,
-              repeat: Infinity,
+              duration: 2.5,
+              times: [0, 0.2, 0.4, 0.6, 0.8, 1],
+              type: "spring",
+              damping: 12,
             }}
           />
           
@@ -94,14 +107,16 @@ export default function AnimatedRobot() {
             r="2.5"
             fill="hsl(0 0% 100%)"
             animate={
-              !isWalking && {
-                scaleY: [1, 0.1, 1],
-              }
+              animationPhase === "lookingAround"
+                ? {
+                    scaleY: [1, 0.1, 1],
+                    x: [0, -1, 1, 0],
+                  }
+                : {}
             }
             transition={{
-              duration: 3,
-              repeat: Infinity,
-              repeatDelay: 2,
+              duration: 2.5,
+              times: [0, 0.4, 0.6, 1],
             }}
           />
           <motion.circle
@@ -110,14 +125,16 @@ export default function AnimatedRobot() {
             r="2.5"
             fill="hsl(0 0% 100%)"
             animate={
-              !isWalking && {
-                scaleY: [1, 0.1, 1],
-              }
+              animationPhase === "lookingAround"
+                ? {
+                    scaleY: [1, 0.1, 1],
+                    x: [0, -1, 1, 0],
+                  }
+                : {}
             }
             transition={{
-              duration: 3,
-              repeat: Infinity,
-              repeatDelay: 2,
+              duration: 2.5,
+              times: [0, 0.4, 0.6, 1],
             }}
           />
           
@@ -130,17 +147,22 @@ export default function AnimatedRobot() {
             strokeWidth="3.5"
             strokeLinecap="round"
             animate={
-              isWalking
+              animationPhase === "walking"
                 ? {
-                    y2: [65, 63, 65],
+                    rotate: [2, -2, 2],
+                  }
+                : animationPhase === "lookingAround"
+                ? {
+                    rotate: [0, -3, 3, -2, 0],
                   }
                 : {}
             }
             transition={{
               ...springTransition,
-              duration: 0.4,
-              repeat: Infinity,
+              duration: animationPhase === "walking" ? 0.4 : 2.5,
+              repeat: animationPhase === "walking" ? Infinity : 0,
             }}
+            style={{ originX: "40px", originY: "27px" }}
           />
           
           <motion.line
@@ -152,18 +174,20 @@ export default function AnimatedRobot() {
             strokeWidth="3"
             strokeLinecap="round"
             animate={
-              isWalking
+              animationPhase === "walking"
                 ? {
-                    rotate: [-35, 35, -35],
+                    rotate: [-40, 30, -40],
                   }
-                : {
-                    y2: [55, 50, 55],
+                : animationPhase === "lookingAround"
+                ? {
+                    rotate: [0, -10, 10, -5, 0],
                   }
+                : {}
             }
             transition={{
               ...springTransition,
-              duration: isWalking ? 0.4 : 1.5,
-              repeat: Infinity,
+              duration: animationPhase === "walking" ? 0.4 : 2,
+              repeat: animationPhase === "walking" ? Infinity : 0,
             }}
             style={{ originX: "40px", originY: "35px" }}
           />
@@ -177,18 +201,20 @@ export default function AnimatedRobot() {
             strokeWidth="3"
             strokeLinecap="round"
             animate={
-              isWalking
+              animationPhase === "walking"
                 ? {
-                    rotate: [35, -35, 35],
+                    rotate: [30, -40, 30],
                   }
-                : {
-                    y2: [55, 50, 55],
+                : animationPhase === "lookingAround"
+                ? {
+                    rotate: [0, 10, -10, 5, 0],
                   }
+                : {}
             }
             transition={{
               ...springTransition,
-              duration: isWalking ? 0.4 : 1.5,
-              repeat: Infinity,
+              duration: animationPhase === "walking" ? 0.4 : 2,
+              repeat: animationPhase === "walking" ? Infinity : 0,
             }}
             style={{ originX: "40px", originY: "35px" }}
           />
@@ -203,16 +229,16 @@ export default function AnimatedRobot() {
               strokeWidth="3.5"
               strokeLinecap="round"
               animate={
-                isWalking
+                animationPhase === "walking"
                   ? {
-                      rotate: [-20, 20, -20],
+                      rotate: [-35, 25, -35],
                     }
                   : {}
               }
               transition={{
                 ...springTransition,
                 duration: 0.4,
-                repeat: Infinity,
+                repeat: animationPhase === "walking" ? Infinity : 0,
               }}
               style={{ originX: "40px", originY: "65px" }}
             />
@@ -225,18 +251,18 @@ export default function AnimatedRobot() {
               strokeWidth="3.5"
               strokeLinecap="round"
               animate={
-                isWalking
+                animationPhase === "walking"
                   ? {
-                      rotate: [-20, 20, -20],
+                      rotate: [10, -15, 10],
                     }
                   : {}
               }
               transition={{
                 ...springTransition,
                 duration: 0.4,
-                repeat: Infinity,
+                repeat: animationPhase === "walking" ? Infinity : 0,
               }}
-              style={{ originX: "40px", originY: "65px" }}
+              style={{ originX: "30px", originY: "95px" }}
             />
           </motion.g>
           
@@ -250,16 +276,16 @@ export default function AnimatedRobot() {
               strokeWidth="3.5"
               strokeLinecap="round"
               animate={
-                isWalking
+                animationPhase === "walking"
                   ? {
-                      rotate: [20, -20, 20],
+                      rotate: [25, -35, 25],
                     }
                   : {}
               }
               transition={{
                 ...springTransition,
                 duration: 0.4,
-                repeat: Infinity,
+                repeat: animationPhase === "walking" ? Infinity : 0,
               }}
               style={{ originX: "40px", originY: "65px" }}
             />
@@ -272,22 +298,22 @@ export default function AnimatedRobot() {
               strokeWidth="3.5"
               strokeLinecap="round"
               animate={
-                isWalking
+                animationPhase === "walking"
                   ? {
-                      rotate: [20, -20, 20],
+                      rotate: [-15, 10, -15],
                     }
                   : {}
               }
               transition={{
                 ...springTransition,
                 duration: 0.4,
-                repeat: Infinity,
+                repeat: animationPhase === "walking" ? Infinity : 0,
               }}
-              style={{ originX: "40px", originY: "65px" }}
+              style={{ originX: "50px", originY: "95px" }}
             />
           </motion.g>
         </g>
-      </svg>
+      </motion.svg>
     </motion.div>
   );
 }
