@@ -1,9 +1,12 @@
 import { motion } from "framer-motion";
 import BouncyText from "@/components/BouncyText";
+import AnimatedBackground from "@/components/AnimatedBackground";
 
 export default function Home() {
   return (
     <div className="relative w-full h-screen overflow-hidden bg-background">
+      <AnimatedBackground />
+      
       <div 
         className="absolute inset-0 opacity-[0.03] pointer-events-none"
         style={{
