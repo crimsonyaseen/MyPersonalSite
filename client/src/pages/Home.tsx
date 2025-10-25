@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import BouncyText from "@/components/BouncyText";
-import AnimatedRobot from "@/components/AnimatedRobot";
 
 export default function Home() {
   return (
@@ -26,8 +25,6 @@ export default function Home() {
           />
         </div>
       </motion.div>
-
-      <AnimatedRobot />
     </div>
   );
 }
