@@ -19,16 +19,16 @@ export default function AnimatedBackground() {
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
       {/* Animated gradient blobs */}
       <motion.div
-        className="absolute w-[600px] h-[600px] rounded-full blur-3xl opacity-20"
+        className="absolute w-[800px] h-[800px] rounded-full blur-[100px] opacity-30"
         style={{
-          background: "radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, transparent 70%)",
-          top: "10%",
-          left: "10%",
+          background: "radial-gradient(circle, rgba(59, 130, 246, 0.4) 0%, transparent 70%)",
+          top: "5%",
+          left: "5%",
         }}
         animate={{
-          x: [0, 50, 0],
-          y: [0, 30, 0],
-          scale: [1, 1.1, 1],
+          x: [0, 80, 0],
+          y: [0, 50, 0],
+          scale: [1, 1.2, 1],
         }}
         transition={{
           duration: 20,
@@ -38,16 +38,16 @@ export default function AnimatedBackground() {
       />
 
       <motion.div
-        className="absolute w-[500px] h-[500px] rounded-full blur-3xl opacity-15"
+        className="absolute w-[700px] h-[700px] rounded-full blur-[100px] opacity-25"
         style={{
-          background: "radial-gradient(circle, rgba(139, 92, 246, 0.3) 0%, transparent 70%)",
-          top: "60%",
-          right: "10%",
+          background: "radial-gradient(circle, rgba(139, 92, 246, 0.4) 0%, transparent 70%)",
+          top: "50%",
+          right: "5%",
         }}
         animate={{
-          x: [0, -40, 0],
-          y: [0, -50, 0],
-          scale: [1, 1.15, 1],
+          x: [0, -60, 0],
+          y: [0, -70, 0],
+          scale: [1, 1.25, 1],
         }}
         transition={{
           duration: 25,
@@ -57,16 +57,16 @@ export default function AnimatedBackground() {
       />
 
       <motion.div
-        className="absolute w-[450px] h-[450px] rounded-full blur-3xl opacity-10"
+        className="absolute w-[600px] h-[600px] rounded-full blur-[100px] opacity-20"
         style={{
-          background: "radial-gradient(circle, rgba(16, 185, 129, 0.2) 0%, transparent 70%)",
-          bottom: "20%",
-          left: "30%",
+          background: "radial-gradient(circle, rgba(16, 185, 129, 0.3) 0%, transparent 70%)",
+          bottom: "15%",
+          left: "35%",
         }}
         animate={{
-          x: [0, 60, 0],
-          y: [0, -40, 0],
-          scale: [1, 1.2, 1],
+          x: [0, 70, 0],
+          y: [0, -50, 0],
+          scale: [1, 1.3, 1],
         }}
         transition={{
           duration: 30,
@@ -79,17 +79,18 @@ export default function AnimatedBackground() {
       {particles.map((particle) => (
         <motion.div
           key={particle.id}
-          className="absolute rounded-full bg-white/10"
+          className="absolute rounded-full bg-white/20"
           style={{
-            width: particle.size,
-            height: particle.size,
+            width: particle.size * 1.5,
+            height: particle.size * 1.5,
             left: `${particle.x}%`,
             top: `${particle.y}%`,
+            boxShadow: "0 0 10px rgba(255, 255, 255, 0.3)",
           }}
           animate={{
             y: [0, -100, -200],
             x: [0, Math.random() * 50 - 25, Math.random() * 100 - 50],
-            opacity: [0, 0.6, 0],
+            opacity: [0, 0.8, 0],
           }}
           transition={{
             duration: particle.duration,
@@ -101,7 +102,7 @@ export default function AnimatedBackground() {
       ))}
 
       {/* Liquid flow lines */}
-      <svg className="absolute inset-0 w-full h-full opacity-5">
+      <svg className="absolute inset-0 w-full h-full opacity-15">
         <defs>
           <linearGradient id="lineGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stopColor="rgba(59, 130, 246, 0.3)" />
@@ -169,13 +170,13 @@ export default function AnimatedBackground() {
 
       {/* Grid overlay for tech feel */}
       <div 
-        className="absolute inset-0 opacity-[0.02]"
+        className="absolute inset-0 opacity-[0.05]"
         style={{
           backgroundImage: `
-            linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px)
+            linear-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.15) 1px, transparent 1px)
           `,
-          backgroundSize: "50px 50px",
+          backgroundSize: "80px 80px",
         }}
       />
 
