@@ -1,34 +1,24 @@
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useTheme } from "../lib/theme-provider";
 
 export default function AnimatedBackground() {
-  const [particles, setParticles] = useState<Array<{ id: number; x: number; y: number; size: number; duration: number }>>([]);
-
-  useEffect(() => {
-    const particleArray = Array.from({ length: 30 }, (_, i) => ({
-      id: i,
-      x: Math.random() * 100,
-      y: Math.random() * 100,
-      size: Math.random() * 3 + 1,
-      duration: Math.random() * 20 + 15,
-    }));
-    setParticles(particleArray);
-  }, []);
-
+  const { theme } = useTheme();
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {/* Animated gradient blobs */}
+      {/* Main gradient sphere */}
       <motion.div
-        className="absolute w-[800px] h-[800px] rounded-full blur-[100px] opacity-30"
+        className="absolute w-[1200px] h-[1200px] rounded-full blur-[120px] opacity-20"
         style={{
-          background: "radial-gradient(circle, rgba(59, 130, 246, 0.4) 0%, transparent 70%)",
-          top: "5%",
-          left: "5%",
+          background: theme === 'dark' 
+            ? "radial-gradient(circle, rgba(147, 197, 253, 0.15) 0%, rgba(139, 92, 246, 0.1) 45%, transparent 70%)"
+            : "radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, rgba(139, 92, 246, 0.2) 45%, transparent 70%)",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
         }}
         animate={{
-          x: [0, 80, 0],
-          y: [0, 50, 0],
-          scale: [1, 1.2, 1],
+          scale: [1, 1.1, 1],
+          opacity: [0.2, 0.25, 0.2],
         }}
         transition={{
           duration: 20,
@@ -37,17 +27,19 @@ export default function AnimatedBackground() {
         }}
       />
 
+      {/* Secondary accent gradients */}
       <motion.div
-        className="absolute w-[700px] h-[700px] rounded-full blur-[100px] opacity-25"
+        className="absolute w-[800px] h-[800px] rounded-full blur-[100px] opacity-10"
         style={{
-          background: "radial-gradient(circle, rgba(139, 92, 246, 0.4) 0%, transparent 70%)",
-          top: "50%",
-          right: "5%",
+          background: theme === 'dark'
+            ? "radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%)"
+            : "radial-gradient(circle, rgba(16, 185, 129, 0.2) 0%, transparent 70%)",
+          top: "20%",
+          right: "-10%",
         }}
         animate={{
-          x: [0, -60, 0],
-          y: [0, -70, 0],
-          scale: [1, 1.25, 1],
+          scale: [1, 1.2, 1],
+          x: [0, -30, 0],
         }}
         transition={{
           duration: 25,
@@ -57,134 +49,32 @@ export default function AnimatedBackground() {
       />
 
       <motion.div
-        className="absolute w-[600px] h-[600px] rounded-full blur-[100px] opacity-20"
+        className="absolute w-[600px] h-[600px] rounded-full blur-[90px] opacity-10"
         style={{
-          background: "radial-gradient(circle, rgba(16, 185, 129, 0.3) 0%, transparent 70%)",
-          bottom: "15%",
-          left: "35%",
+          background: theme === 'dark'
+            ? "radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%)"
+            : "radial-gradient(circle, rgba(139, 92, 246, 0.2) 0%, transparent 70%)",
+          bottom: "10%",
+          left: "-5%",
         }}
         animate={{
-          x: [0, 70, 0],
-          y: [0, -50, 0],
-          scale: [1, 1.3, 1],
+          scale: [1, 1.15, 1],
+          y: [0, -20, 0],
         }}
         transition={{
-          duration: 30,
+          duration: 18,
           repeat: Infinity,
           ease: "easeInOut",
         }}
       />
 
-      {/* Floating particles */}
-      {particles.map((particle) => (
-        <motion.div
-          key={particle.id}
-          className="absolute rounded-full bg-white/20"
-          style={{
-            width: particle.size * 1.5,
-            height: particle.size * 1.5,
-            left: `${particle.x}%`,
-            top: `${particle.y}%`,
-            boxShadow: "0 0 10px rgba(255, 255, 255, 0.3)",
-          }}
-          animate={{
-            y: [0, -100, -200],
-            x: [0, Math.random() * 50 - 25, Math.random() * 100 - 50],
-            opacity: [0, 0.8, 0],
-          }}
-          transition={{
-            duration: particle.duration,
-            repeat: Infinity,
-            ease: "linear",
-            delay: Math.random() * 5,
-          }}
-        />
-      ))}
-
-      {/* Liquid flow lines */}
-      <svg className="absolute inset-0 w-full h-full opacity-15">
-        <defs>
-          <linearGradient id="lineGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="rgba(59, 130, 246, 0.3)" />
-            <stop offset="100%" stopColor="rgba(139, 92, 246, 0.3)" />
-          </linearGradient>
-          <linearGradient id="lineGradient2" x1="100%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="rgba(139, 92, 246, 0.3)" />
-            <stop offset="100%" stopColor="rgba(16, 185, 129, 0.3)" />
-          </linearGradient>
-        </defs>
-        
-        <motion.path
-          d="M 0 50 Q 250 100, 500 50 T 1000 50"
-          stroke="url(#lineGradient1)"
-          strokeWidth="2"
-          fill="none"
-          initial={{ pathLength: 0, opacity: 0 }}
-          animate={{ 
-            pathLength: [0, 1, 0],
-            opacity: [0, 1, 0],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-        
-        <motion.path
-          d="M 1000 150 Q 750 200, 500 150 T 0 150"
-          stroke="url(#lineGradient2)"
-          strokeWidth="2"
-          fill="none"
-          initial={{ pathLength: 0, opacity: 0 }}
-          animate={{ 
-            pathLength: [0, 1, 0],
-            opacity: [0, 1, 0],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 2,
-          }}
-        />
-
-        <motion.path
-          d="M 500 300 Q 250 250, 0 300 T -500 300"
-          stroke="url(#lineGradient1)"
-          strokeWidth="1.5"
-          fill="none"
-          initial={{ pathLength: 0, opacity: 0 }}
-          animate={{ 
-            pathLength: [0, 1, 0],
-            opacity: [0, 0.8, 0],
-          }}
-          transition={{
-            duration: 12,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 4,
-          }}
-        />
-      </svg>
-
-      {/* Grid overlay for tech feel */}
-      <div 
-        className="absolute inset-0 opacity-[0.05]"
-        style={{
-          backgroundImage: `
-            linear-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255, 255, 255, 0.15) 1px, transparent 1px)
-          `,
-          backgroundSize: "80px 80px",
-        }}
-      />
-
-      {/* Subtle vignette */}
+      {/* Subtle gradient overlay */}
       <div 
         className="absolute inset-0"
         style={{
-          background: "radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.3) 100%)",
+          background: theme === 'dark'
+            ? "radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.2) 100%)"
+            : "radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.05) 100%)",
         }}
       />
     </div>

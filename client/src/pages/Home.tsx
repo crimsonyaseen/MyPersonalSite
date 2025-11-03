@@ -1,10 +1,15 @@
 import { motion } from "framer-motion";
 import BouncyText from "@/components/BouncyText";
 import AnimatedBackground from "@/components/AnimatedBackground";
+import FloatingNav from "@/components/navigation/FloatingNav";
+import PersonalBranding from "@/components/branding/PersonalBranding";
+import ProfileImage from "@/components/branding/ProfileImage";
 
 export default function Home() {
   return (
     <div className="relative w-full h-screen overflow-hidden bg-background">
+      <ProfileImage />
+      <FloatingNav />
       <AnimatedBackground />
       
       <div 
@@ -22,10 +27,7 @@ export default function Home() {
         className="relative flex items-start justify-center w-full h-full pt-24 md:pt-32"
       >
         <div className="px-4 md:px-8 max-w-4xl mx-auto text-center">
-          <BouncyText
-            text="coming soon..."
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extralight tracking-tight text-foreground"
-          />
+          <PersonalBranding />
         </div>
       </motion.div>
     </div>
