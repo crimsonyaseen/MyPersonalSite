@@ -24,6 +24,8 @@ The site automatically deploys to GitHub Pages whenever you push to the `main` b
 
 **Your site will be available at:** **https://crimsonyaseen.github.io/MyPersonalSite/**
 
+You can monitor deployment progress and check for any errors in the **Actions** tab of your repository. Each push will show a new workflow run with detailed logs.
+
 ### Making Changes
 
 After making changes to your code:
