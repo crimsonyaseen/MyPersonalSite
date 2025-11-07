@@ -48,7 +48,7 @@ This site is automatically deployed to GitHub Pages using GitHub Actions. Any pu
 
 If you need to manually redeploy the site (for example, after unpublishing or to refresh the deployment):
 
-1. Go to the [Actions tab](https://github.com/crimsonyaseen/MyPersonalSite/actions) in your GitHub repository
+1. Go to the **Actions** tab in your GitHub repository
 2. Click on "Deploy to GitHub Pages" workflow in the left sidebar
 3. Click the "Run workflow" button on the right side
 4. Select the `main` branch (or your desired branch)
