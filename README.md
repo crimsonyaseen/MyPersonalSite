@@ -44,6 +44,18 @@ This site is automatically deployed to GitHub Pages using GitHub Actions. Any pu
 2. GitHub Actions workflow in `.github/workflows/deploy.yml` handles automatic deployments
 3. Built files are automatically deployed to the gh-pages branch
 
+### Manual Redeployment
+
+If you need to manually redeploy the site (for example, after unpublishing or to refresh the deployment):
+
+1. Go to the [Actions tab](https://github.com/crimsonyaseen/MyPersonalSite/actions) in your GitHub repository
+2. Click on "Deploy to GitHub Pages" workflow in the left sidebar
+3. Click the "Run workflow" button on the right side
+4. Select the `main` branch (or your desired branch)
+5. Click "Run workflow" to trigger a new deployment
+
+Alternatively, you can push a new commit to the `main` branch to trigger an automatic deployment.
+
 ## Project Structure
 
 ```
