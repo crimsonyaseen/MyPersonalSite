@@ -14,7 +14,7 @@ export default function ProfileImage() {
     >
       <div className="relative w-20 h-20 md:w-24 md:h-24 overflow-hidden rounded-full shadow-lg cursor-pointer">
         <img
-          src="/MyPersonalSite/profile.jpg" 
+          src={`${import.meta.env.BASE_URL}profile.jpg`}
           alt="Yaseen Mohamed"
           className="w-full h-full object-cover"
         />

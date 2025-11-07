@@ -13,37 +13,37 @@ interface Image {
 const images: Image[] = [
   {
     id: 1,
-    src: "/MyPersonalSite/gallery/sanddunes.jpg",
+    src: `${import.meta.env.BASE_URL}gallery/sanddunes.jpg`,
     alt: "Sand Dunes",
     category: "Colorado"
   },
   {
     id: 2,
-    src: "/MyPersonalSite/gallery/smokymountains.jpg",
+    src: `${import.meta.env.BASE_URL}gallery/smokymountains.jpg`,
     alt: "Smoky Mountains",
     category: "Tennessee"
   },
   {
     id: 3,
-    src: "/MyPersonalSite/gallery/washington.jpg",
+    src: `${import.meta.env.BASE_URL}gallery/washington.jpg`,
     alt: "Crystal Mountain",
     category: "Washington"
   },
   {
     id: 4,
-    src: "/MyPersonalSite/gallery/lakediablo.jpg",
+    src: `${import.meta.env.BASE_URL}gallery/lakediablo.jpg`,
     alt: "Lake Diablo",
     category: "Washington"
   },
   {
     id: 5,
-    src: "/MyPersonalSite/gallery/northernlights.jpg",
+    src: `${import.meta.env.BASE_URL}gallery/northernlights.jpg`,
     alt: "Northern Lights",
     category: "Washington"
   },
   {
     id: 6,
-    src: "/MyPersonalSite/gallery/borabora.jpg",
+    src: `${import.meta.env.BASE_URL}gallery/borabora.jpg`,
     alt: "Bora Bora",
     category: "French Polynesia"
   }
