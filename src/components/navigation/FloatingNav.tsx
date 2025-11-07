@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { FiGithub, FiLinkedin, FiImage, FiMail } from "react-icons/fi";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { Link } from "wouter";
 
 interface SocialLink {
   icon: JSX.Element;
@@ -69,10 +70,7 @@ export default function FloatingNav() {
           {socialLinks.map((link) => (
             <Tooltip key={link.label}>
               <TooltipTrigger asChild>
-                <motion.a
-                  href={link.href}
-                  target={link.href.startsWith("http") || link.href.startsWith("mailto") ? "_blank" : undefined}
-                  rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                <motion.div
                   variants={itemVariants}
                   whileHover={{ 
                     scale: 1.2,
@@ -83,11 +81,28 @@ export default function FloatingNav() {
                     scale: 0.95,
                     filter: "drop-shadow(0 0 8px rgba(59, 130, 246, 0.5))"
                   }}
-                  className="text-foreground/60 hover:text-foreground transition-colors duration-200"
-                  aria-label={link.label}
                 >
-                  {link.icon}
-                </motion.a>
+                  {link.href.startsWith("http") || link.href.startsWith("mailto") ? (
+                    <a
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-foreground/60 hover:text-foreground transition-colors duration-200"
+                      aria-label={link.label}
+                    >
+                      {link.icon}
+                    </a>
+                  ) : (
+                    <Link href={link.href}>
+                      <a
+                        className="text-foreground/60 hover:text-foreground transition-colors duration-200 cursor-pointer"
+                        aria-label={link.label}
+                      >
+                        {link.icon}
+                      </a>
+                    </Link>
+                  )}
+                </motion.div>
               </TooltipTrigger>
               <TooltipContent side="right" className="font-light">
                 {link.label}

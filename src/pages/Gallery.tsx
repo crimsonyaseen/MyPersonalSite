@@ -13,37 +13,37 @@ interface Image {
 const images: Image[] = [
   {
     id: 1,
-    src: "/gallery/sanddunes.jpg",
+    src: "/MyPersonalSite/gallery/sanddunes.jpg",
     alt: "Sand Dunes",
     category: "Colorado"
   },
   {
     id: 2,
-    src: "/gallery/smokymountains.jpg",
+    src: "/MyPersonalSite/gallery/smokymountains.jpg",
     alt: "Smoky Mountains",
     category: "Tennessee"
   },
   {
     id: 3,
-    src: "/gallery/washington.jpg",
+    src: "/MyPersonalSite/gallery/washington.jpg",
     alt: "Crystal Mountain",
     category: "Washington"
   },
   {
     id: 4,
-    src: "/gallery/lakediablo.jpg",
+    src: "/MyPersonalSite/gallery/lakediablo.jpg",
     alt: "Lake Diablo",
     category: "Washington"
   },
   {
     id: 5,
-    src: "/gallery/northernlights.jpg",
+    src: "/MyPersonalSite/gallery/northernlights.jpg",
     alt: "Northern Lights",
     category: "Washington"
   },
   {
     id: 6,
-    src: "/gallery/borabora.jpg",
+    src: "/MyPersonalSite/gallery/borabora.jpg",
     alt: "Bora Bora",
     category: "French Polynesia"
   }
