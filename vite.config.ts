@@ -13,6 +13,6 @@ export default defineConfig({
   build: {
     outDir: "dist",
     emptyOutDir: true,
-    target: "es2015", // Better browser compatibility including older iOS Safari
+    target: "es2015", // Better browser compatibility including iOS Safari 10+ and similar older browsers
   },
 });
