@@ -4,7 +4,7 @@ import { ThemeToggle } from "./components/ThemeToggle";
 import Home from "./pages/Home";
 import Gallery from "./pages/Gallery";
 
-const base = import.meta.env.BASE_URL.replace(/\/$/, ''); // Remove trailing slash
+const base = import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL.replace(/\/$/, ''); // Remove trailing slash
 
 function Router() {
   return (
