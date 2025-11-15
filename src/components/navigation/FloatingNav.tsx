@@ -66,7 +66,7 @@ export default function FloatingNav() {
   return (
     <TooltipProvider>
       <motion.div
-        className="fixed left-8 top-1/2 -translate-y-1/2 z-50 mt-12"
+        className="fixed left-4 md:left-8 top-1/2 -translate-y-1/2 z-50 mt-12"
         variants={containerVariants}
         initial="hidden"
         animate="visible"

@@ -17,6 +17,15 @@ export default function Home() {
       <FloatingNav />
       <ScrollIndicator />
       
+      {/* Mobile spacing to avoid nav overlap */}
+      <style>{`
+        @media (max-width: 768px) {
+          body {
+            padding-left: 3rem;
+          }
+        }
+      `}</style>
+      
       {/* Hero Section */}
       <div className="relative w-full h-screen overflow-hidden">
         <AnimatedBackground />

@@ -12,7 +12,7 @@ export default function ProfileImage() {
         transition: { duration: 0.3 }
       }}
     >
-      <div className="relative w-20 h-20 md:w-24 md:h-24 overflow-hidden rounded-full shadow-lg cursor-pointer">
+      <div className="relative w-16 h-16 md:w-24 md:h-24 overflow-hidden rounded-full shadow-lg cursor-pointer">
         <img
           src={`${import.meta.env.BASE_URL}profile.jpg`}
           alt="Yaseen Mohamed"
