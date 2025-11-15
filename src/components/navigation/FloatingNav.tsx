@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { FiGithub, FiLinkedin, FiImage, FiMail } from "react-icons/fi";
+import { FiGithub, FiLinkedin, FiImage, FiMail, FiUser } from "react-icons/fi";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Link } from "wouter";
 
@@ -19,6 +19,11 @@ const socialLinks: SocialLink[] = [
     icon: <FiLinkedin className="w-6 h-6" />,
     href: "https://linkedin.com/in/-yaseenmohamed/",
     label: "LinkedIn",
+  },
+  {
+    icon: <FiUser className="w-6 h-6" />,
+    href: "/about",
+    label: "About",
   },
   {
     icon: <FiImage className="w-6 h-6" />,
@@ -82,11 +87,19 @@ export default function FloatingNav() {
                     filter: "drop-shadow(0 0 8px rgba(59, 130, 246, 0.5))"
                   }}
                 >
-                  {link.href.startsWith("http") || link.href.startsWith("mailto") ? (
+                  {link.href.startsWith("http") ? (
                     <a
                       href={link.href}
                       target="_blank"
                       rel="noopener noreferrer"
+                      className="text-foreground/60 hover:text-foreground transition-colors duration-200"
+                      aria-label={link.label}
+                    >
+                      {link.icon}
+                    </a>
+                  ) : link.href.startsWith("mailto") ? (
+                    <a
+                      href={link.href}
                       className="text-foreground/60 hover:text-foreground transition-colors duration-200"
                       aria-label={link.label}
                     >

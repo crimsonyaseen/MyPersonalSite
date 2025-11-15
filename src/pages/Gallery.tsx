@@ -84,8 +84,16 @@ export default function Gallery() {
         transition={{ duration: 0.6 }}
         className="text-4xl md:text-5xl font-light text-center mb-12"
       >
-        My Adventures
+        My Photos
       </motion.h1>
+      <motion.h2
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.4 }}
+        className="text-2xl md:text-1xl font-light text-center mb-12"
+      >
+        Just some photos I took on my IPhone (not sponsored)
+      </motion.h2>
 
       <motion.div
         variants={containerVariants}

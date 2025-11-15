@@ -3,6 +3,7 @@ import { ThemeProvider } from "./lib/theme-provider";
 import { ThemeToggle } from "./components/ThemeToggle";
 import Home from "./pages/Home";
 import Gallery from "./pages/Gallery";
+import About from "./pages/About";
 
 const base = import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL.replace(/\/$/, ''); // Remove trailing slash
 
@@ -11,6 +12,7 @@ function Router() {
     <WouterRouter base={base}>
       <Switch>
         <Route path="/" component={Home} />
+        <Route path="/about" component={About} />
         <Route path="/gallery" component={Gallery} />
         <Route path="*" component={Home} />
       </Switch>
