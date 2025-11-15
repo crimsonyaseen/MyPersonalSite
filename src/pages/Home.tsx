@@ -21,7 +21,8 @@ export default function Home() {
       <style>{`
         @media (max-width: 768px) {
           body {
-            padding-left: 3rem;
+            padding-left: 3.5rem;
+            padding-right: 1rem;
           }
         }
       `}</style>

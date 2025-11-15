@@ -11,13 +11,13 @@ export default function PersonalBranding() {
     >
       <BouncyText
         text="Yaseen Mohamed"
-        className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extralight tracking-tight text-foreground"
+        className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extralight tracking-tight text-foreground px-2"
       />
       
-      <div className="relative">
+      <div className="relative px-2">
         <BouncyText
           text="product engineer, curious individual"
-          className="text-xl sm:text-2xl md:text-3xl font-light text-foreground/80 tracking-wider"
+          className="text-lg sm:text-2xl md:text-3xl font-light text-foreground/80 tracking-wide sm:tracking-wider"
         />
       </div>
     </motion.div>
